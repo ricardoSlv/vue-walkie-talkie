@@ -2,7 +2,7 @@
   <section>
     <ul>
       <li v-for="chat in chats" :key="chat.id">
-        <router-link :to="`/chats/${uid}`">
+        <router-link :to="`/chats/${chat.id}`">
           {{ chat.id }}
         </router-link>
       </li>
@@ -14,9 +14,9 @@
 </template>
 
 <script lang="ts">
-import firebase from 'firebase/app'
-import { db } from '@/firebase'
-import Vue from 'vue'
+import firebase from 'firebase/app';
+import { db } from '@/firebase';
+import Vue from 'vue';
 
 export default Vue.extend({
   props: ['uid'],
@@ -30,10 +30,10 @@ export default Vue.extend({
           createdAt: firebase.firestore.Timestamp.now(),
           owner: this.uid,
           members: [this.uid]
-        })
-        console.log('newChat', newChat)
+        });
+        console.log('newChat', newChat);
       } catch (e) {
-        console.log('e.message', e.message)
+        console.log('e.message', e.message);
       }
     }
   },
@@ -41,7 +41,7 @@ export default Vue.extend({
     return {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       chats: db.collection('chats').where('owner', '==', (this as any).uid)
-    }
+    };
   }
-})
+});
 </script>

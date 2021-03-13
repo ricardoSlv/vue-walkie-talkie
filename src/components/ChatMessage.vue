@@ -1,8 +1,10 @@
 <template>
   <div class="message" :class="{ 'from-user': owner }">
-    {{ msg.text }}
-    <br />
-    <span class="sender"> from UID {{ msg.uid }}</span>
+    <p v-if="msg.text" class="pl-2">
+      {{ msg.text }}
+    </p>
+    <audio v-if="msg.audioURL" :src="msg.audioURL" controls></audio>
+    <span class="sender"> from UID {{ msg.sender }}</span>
   </div>
 </template>
 
@@ -20,6 +22,8 @@ export default Vue.extend({
   color: black;
   border-radius: 5px;
   padding: 12px;
+  min-width: 330px;
+  max-width: 50%;
 }
 
 .from-user {
@@ -29,5 +33,10 @@ export default Vue.extend({
 
 .sender {
   font-size: 0.5rem;
+  margin-left: auto;
+  text-align: end;
+  display: block;
+  padding: 1em 0px;
+  width: 100%;
 }
 </style>
