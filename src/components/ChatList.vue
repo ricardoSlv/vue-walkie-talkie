@@ -40,7 +40,8 @@ export default Vue.extend({
   firestore() {
     return {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      chats: db.collection('chats').where('owner', '==', (this as any).uid)
+      // chats: db.collection('chats').where('owner', '==', (this as any).uid)
+      chats: db.collection('chats')
     };
   }
 });
